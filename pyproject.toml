@@ -9,6 +9,9 @@ description = "Consolidates product lifecycle events from 16 regional feeds into
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    # zoneinfo reads the OS time-zone database; Windows has none, so without this every
+    # ZoneInfo(...) raises ZoneInfoNotFoundError there (it did, on the first Windows CI run).
+    "tzdata>=2024.1; sys_platform == 'win32'",
     "click>=8.1",
     "pydantic>=2.5",
     "pydantic-settings>=2.1",
