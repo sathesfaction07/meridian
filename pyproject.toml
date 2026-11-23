@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lifecycle-tracker"
+version = "0.1.0"
+description = "Consolidates product lifecycle events from 16 regional feeds into one timezone-correct timeline"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1",
+    "pydantic>=2.5",
+    "pydantic-settings>=2.1",
+]
+
+[project.optional-dependencies]
+chart = ["matplotlib>=3.7"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+lifecycle-tracker = "lifecycle_tracker.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lifecycle_tracker"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

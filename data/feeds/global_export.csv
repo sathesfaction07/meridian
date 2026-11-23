@@ -1,0 +1,7 @@
+product_id,region,kind,timestamp
+P-1001,us,created,2025-01-15T14:00:00Z
+P-1001,jp,created,2025-01-15T09:00:00Z
+P-1001,au,listed,2025-04-05T16:30:00Z
+P-1003,mx,created,2025-02-01T00:00:00-06:00
+P-1003,mx,listed,2025-02-15T12:00:00-06:00
+P-1003,br,created,2025-02-01T09:00:00

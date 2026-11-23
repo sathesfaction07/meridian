@@ -1,0 +1,12 @@
+product_id,region,kind,timestamp
+P-1001,us,created,2025-01-15T09:00:00
+P-1001,us,listed,2025-02-01T14:30:00
+P-1001,us,suppressed,2025-03-09T02:30:00
+P-1001,us,reinstated,2025-04-10T11:00:00
+P-1001,us,delisted,2025-11-02T01:30:00
+P-1002,us,listed,2025-05-01T08:00:00
+P-1002,us,archived,2025-06-01T08:00:00
+P-1002,us,listed,2025-07-01T08:00:00
+P-1001,ca,created,2025-01-16T10:00:00
+P-1001,ca,listed,2025-02-03T09:15:00
+P-1001,ca,suppressed,2025-08-20T16:45:00

@@ -1,0 +1,8 @@
+product_id,marketplace,event_type,occurred_at
+P-1001,gb,created,2025-01-15 08:00:00
+P-1001,gb,published,2025-03-30 01:30:00
+P-1001,eu-central,created,2025-01-15 09:00:00
+P-1001,eu-central,published,2025-03-30 02:30:00
+P-1001,eu-central,blocked,2025-10-26 02:30:00
+P-1001,ie,published,2025-06-01 12:00:00
+P-1002,eu-west,created,2025-05-02
