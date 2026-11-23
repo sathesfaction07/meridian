@@ -312,14 +312,14 @@ Setup complete.
 
   source .venv/bin/activate
 
-  lifecycle-tracker doctor
-  lifecycle-tracker regions
-  lifecycle-tracker resolve 2025-03-09T02:30:00 us      # a local time that never happened
-  lifecycle-tracker resolve 2025-11-02T01:30:00 us      # one that happened twice
+  meridian doctor
+  meridian regions
+  meridian resolve 2025-03-09T02:30:00 us      # a local time that never happened
+  meridian resolve 2025-11-02T01:30:00 us      # one that happened twice
 
-  lifecycle-tracker show -i data/feeds
-  lifecycle-tracker jsonl -i data/feeds --what spans | head
-  lifecycle-tracker export-all -i data/feeds -o out/
+  meridian show -i data/feeds
+  meridian jsonl -i data/feeds --what spans | head
+  meridian export-all -i data/feeds -o out/
 
 `show` exits non-zero if any row failed to parse or any conflict was found, so it composes
 into a pipeline step that gates on feed quality. `resolve` exits non-zero for a timestamp

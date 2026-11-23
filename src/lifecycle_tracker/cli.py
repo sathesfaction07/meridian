@@ -32,7 +32,7 @@ def _load(target: Path) -> tuple[list, list[str]]:
 
 
 @click.group()
-@click.version_option(__version__, prog_name="lifecycle-tracker")
+@click.version_option(__version__, prog_name="meridian")
 def main() -> None:
     """Consolidate product lifecycle events from regional feeds into one timeline.
 
@@ -144,7 +144,7 @@ def jsonl(feeds: Path | None, destination: Path | None, what: str) -> None:
     """Write JSON Lines, one object per line, for piping.
 
     Nothing but the data goes to stdout when no output file is given, so
-    `lifecycle-tracker jsonl | jq ...` works. Diagnostics go to stderr for the same reason.
+    `meridian jsonl | jq ...` works. Diagnostics go to stderr for the same reason.
     """
     settings = _settings(feeds=feeds)
     events, problems = _load(settings.feeds)

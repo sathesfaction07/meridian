@@ -28,7 +28,7 @@ FEED_DIR = REPO_ROOT / "data" / "feeds"
 
 requires_matplotlib = pytest.mark.skipif(
     importlib.util.find_spec("matplotlib") is None,
-    reason="matplotlib is optional: pip install 'lifecycle-tracker[chart]'",
+    reason="matplotlib is optional: pip install 'meridian[chart]'",
 )
 
 

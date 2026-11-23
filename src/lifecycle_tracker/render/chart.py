@@ -53,7 +53,7 @@ def write_chart(timeline: Timeline, path: Path, *, width: float = 12.0) -> Path:
         import matplotlib.pyplot as plt
     except ImportError as exc:
         raise ChartError(
-            "charts need matplotlib. Install it with: pip install 'lifecycle-tracker[chart]'"
+            "charts need matplotlib. Install it with: pip install 'meridian[chart]'"
         ) from exc
 
     if not timeline.events:
@@ -136,5 +136,5 @@ def available() -> tuple[bool, str]:
     try:
         import matplotlib  # noqa: F401
     except ImportError:
-        return (False, "matplotlib is not installed - run: pip install 'lifecycle-tracker[chart]'")
+        return (False, "matplotlib is not installed - run: pip install 'meridian[chart]'")
     return (True, "")

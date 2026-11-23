@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "lifecycle-tracker"
+name = "meridian"
 version = "0.1.0"
 description = "Consolidates product lifecycle events from 16 regional feeds into one timezone-correct timeline"
 readme = "README.md"
@@ -23,7 +23,7 @@ dev = [
 ]
 
 [project.scripts]
-lifecycle-tracker = "lifecycle_tracker.cli:main"
+meridian = "lifecycle_tracker.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/lifecycle_tracker"]

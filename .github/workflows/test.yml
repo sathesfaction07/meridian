@@ -33,11 +33,11 @@ jobs:
         run: pytest -q --cov=lifecycle_tracker --cov-report=term-missing
 
       - name: Doctor runs with no credentials and no network
-        run: lifecycle-tracker doctor -i data/feeds
+        run: meridian doctor -i data/feeds
 
       - name: Region offsets are what the docs claim
         run: |
-          lifecycle-tracker regions | tee /tmp/regions.txt
+          meridian regions | tee /tmp/regions.txt
           grep -qE '^\s+in .*\+5\.50\s+\+5\.50\s+no' /tmp/regions.txt
           grep -qE '^\s+au .*\+11\.00\s+\+10\.00\s+yes' /tmp/regions.txt
           echo "half-hour offset and inverted southern phase both present"
@@ -45,16 +45,16 @@ jobs:
       - name: A nonexistent local time is flagged, not silently shifted
         run: |
           # Exits 1 by design, so the exit code is inverted here.
-          ! lifecycle-tracker resolve 2025-03-09T02:30:00 us
-          lifecycle-tracker resolve 2025-03-09T02:30:00 us | grep -q nonexistent
-          ! lifecycle-tracker resolve 2025-11-02T01:30:00 us
-          lifecycle-tracker resolve 2025-11-02T01:30:00 us | grep -q ambiguous
+          ! meridian resolve 2025-03-09T02:30:00 us
+          meridian resolve 2025-03-09T02:30:00 us | grep -q nonexistent
+          ! meridian resolve 2025-11-02T01:30:00 us
+          meridian resolve 2025-11-02T01:30:00 us | grep -q ambiguous
           echo "both DST edge cases reported"
 
       - name: The shipped feeds behave as documented
         run: |
           # Non-zero is expected: the sample feeds carry deliberate conflicts.
-          lifecycle-tracker show -i data/feeds --no-details -o /tmp/ci-out || true
+          meridian show -i data/feeds --no-details -o /tmp/ci-out || true
           python -c "
           import json
           summary = json.load(open('/tmp/ci-out/report.json'))['summary']
@@ -75,8 +75,8 @@ jobs:
         # The regression: the exporter wrote `instant` while the importer only accepted
         # `timestamp`, so every row was rejected. Each half worked; the round trip did not.
         run: |
-          lifecycle-tracker export-all -i data/feeds -o /tmp/ci-first
-          lifecycle-tracker export-all -i /tmp/ci-first/events.csv -o /tmp/ci-second
+          meridian export-all -i data/feeds -o /tmp/ci-first
+          meridian export-all -i /tmp/ci-first/events.csv -o /tmp/ci-second
           python -c "
           import json
           first = json.load(open('/tmp/ci-first/report.json'))['summary']
@@ -88,7 +88,7 @@ jobs:
 
       - name: JSON Lines on stdout carries only data, so it can be piped
         run: |
-          lifecycle-tracker jsonl -i data/feeds --what spans > /tmp/spans.jsonl
+          meridian jsonl -i data/feeds --what spans > /tmp/spans.jsonl
           python -c "
           import json
           lines = [l for l in open('/tmp/spans.jsonl') if l.strip()]

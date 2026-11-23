@@ -1,4 +1,4 @@
-# LifecycleTracker — Technical Architecture
+# Meridian — Technical Architecture
 
 ## Overview
 
@@ -12,7 +12,7 @@ Consolidates product lifecycle events from 16 regional feeds into one timeline p
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│                        CLI (lifecycle-tracker)                                │
+│                        CLI (meridian)                                │
 │                                                                              │
 │  show        text gantt + per-region table + DST notes + conflicts           │
 │              exit 1 on any unparsed row OR any conflict                      │
@@ -192,7 +192,7 @@ Opposite facts, same rendering. The metric was right; the presentation collapsed
 ## Data Flow
 
 ```
-1.  lifecycle-tracker show -i data/feeds
+1.  meridian show -i data/feeds
 2.  load_directory  -> 4 files, sorted by name for determinism
       regional_us_ca.csv  regional_eu.csv  regional_apac.jsonl  global_export.csv
 3.  per row: parse_row
@@ -254,12 +254,12 @@ bash setup.sh                 # verifies behaviour, not just install
 bash setup.sh --chart
 source .venv/bin/activate
 
-lifecycle-tracker doctor
-lifecycle-tracker regions
-lifecycle-tracker resolve 2025-03-09T02:30:00 us
-lifecycle-tracker show -i data/feeds
-lifecycle-tracker jsonl -i data/feeds --what spans | jq -r '.region' | sort -u
-lifecycle-tracker export-all -i data/feeds -o out/
+meridian doctor
+meridian regions
+meridian resolve 2025-03-09T02:30:00 us
+meridian show -i data/feeds
+meridian jsonl -i data/feeds --what spans | jq -r '.region' | sort -u
+meridian export-all -i data/feeds -o out/
 ```
 
 `setup.sh` checks tzdata is present before anything else, then asserts: every real 2025 DST transition in every region is classified correctly (20 found by walking tzdata); the widest spread is 17 hours; durations are 47/49/48 hours across spring-forward, fall-back and no-DST; the shipped feeds exercise all four resolutions; spans tile per region with only the last open; no span is bounded by a foreign event; the merge is order-independent across 10 shuffles and idempotent; an exported file re-ingests with identical spans; and `0+` renders differently from `0`.

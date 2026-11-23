@@ -1,4 +1,4 @@
-# LifecycleTracker
+# Meridian
 
 Consolidates product lifecycle events from 16 regional feeds into one timeline per product, then renders it as a text gantt, a PNG chart, JSON Lines, or CSV.
 
@@ -58,10 +58,10 @@ Each timestamp records how it was mapped onto an instant:
 | `ambiguous` | the local reading **happens twice**. Resolved to the first occurrence, and flagged |
 | `nonexistent` | the local reading **never happens**. Python shifts it forward; the shift is flagged |
 
-The last two are the point. `lifecycle-tracker resolve` shows them on any timestamp you like:
+The last two are the point. `meridian resolve` shows them on any timestamp you like:
 
 ```
-$ lifecycle-tracker resolve 2025-03-09T02:30:00 us
+$ meridian resolve 2025-03-09T02:30:00 us
   local       2025-03-09T02:30:00
   instant     2025-03-09T07:30:00+00:00
   resolution  nonexistent
@@ -77,14 +77,14 @@ bash setup.sh                 # verifies real behaviour, not just install
 bash setup.sh --chart         # + matplotlib for PNG output
 source .venv/bin/activate
 
-lifecycle-tracker doctor
-lifecycle-tracker regions
-lifecycle-tracker show -i data/feeds
-lifecycle-tracker jsonl -i data/feeds --what spans | jq -r '.region'
-lifecycle-tracker export-all -i data/feeds -o out/
+meridian doctor
+meridian regions
+meridian show -i data/feeds
+meridian jsonl -i data/feeds --what spans | jq -r '.region'
+meridian export-all -i data/feeds -o out/
 ```
 
-`lifecycle-tracker show -p P-1001` on the shipped feeds:
+`meridian show -p P-1001` on the shipped feeds:
 
 ```
 P-1001   22 event(s), 8 region(s), 2 dup(s) removed, 3 conflict(s), 10 dst-flagged
