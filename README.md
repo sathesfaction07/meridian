@@ -202,7 +202,7 @@ I found this reading my own output and not believing it, then checked whether bo
 
 **`utc_offset_hours` returns a float.** Two of the sixteen regions are on half-hour offsets, and an int would silently truncate India to +5.
 
-**No model, and no web UI.** The spec called for neither. The accuracy problem here is entirely about strict parsing and explicit handling of missing data — there is no judgement for a model to contribute, and putting one in the path would make a timeline unreproducible.
+**No model, and no web UI.** The project brief called for neither. The accuracy problem here is entirely about strict parsing and explicit handling of missing data — there is no judgement for a model to contribute, and putting one in the path would make a timeline unreproducible.
 
 **The text renderer exists because the chart cannot be tested.** A PNG can only be checked by a human looking at it. The text gantt asserts in CI, works in a terminal, and needs no optional dependency. They exist for different reasons rather than one superseding the other.
 
